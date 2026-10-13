@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\SchoolJournal.Application\SchoolJournal.Application.csproj" />
     <ProjectReference Include="..\..\src\SchoolJournal.Web\SchoolJournal.Web.csproj" />
+    <ProjectReference Include="..\..\src\SchoolJournal.BusinessLogic\SchoolJournal.BusinessLogic.csproj" />
   </ItemGroup>
 
 </Project>

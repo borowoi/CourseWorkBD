@@ -1,8 +1,7 @@
 <Solution>
   <Folder Name="/src/">
-    <Project Path="src/SchoolJournal.Application/SchoolJournal.Application.csproj" />
-    <Project Path="src/SchoolJournal.Domain/SchoolJournal.Domain.csproj" />
-    <Project Path="src/SchoolJournal.Infrastructure/SchoolJournal.Infrastructure.csproj" />
+    <Project Path="src/SchoolJournal.BusinessLogic/SchoolJournal.BusinessLogic.csproj" />
+    <Project Path="src/SchoolJournal.DataAccess/SchoolJournal.DataAccess.csproj" />
     <Project Path="src/SchoolJournal.Web/SchoolJournal.Web.csproj" />
   </Folder>
   <Folder Name="/tests/">

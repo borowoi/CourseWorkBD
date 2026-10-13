@@ -1,14 +1,16 @@
-using SchoolJournal.Application;
-using SchoolJournal.Infrastructure;
+using SchoolJournal.BusinessLogic;
+using SchoolJournal.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews();
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? throw new InvalidOperationException("Строка подключения 'DefaultConnection' не найдена.");
 
-builder.Services.AddApplication();
-builder.Services.AddInfrastructure(
-    builder.Configuration.GetConnectionString("DefaultConnection")
-        ?? throw new InvalidOperationException("Не найдена строка подключения DefaultConnection."));
+// Регистрация слоя доступа к данным и слоя бизнес-логики
+builder.Services.AddDataAccessLayer(connectionString);
+builder.Services.AddBusinessLogicLayer();
+
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 

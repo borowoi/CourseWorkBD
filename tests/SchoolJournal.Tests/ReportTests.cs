@@ -1,6 +1,6 @@
-using SchoolJournal.Application.Common;
-using SchoolJournal.Application.Dtos;
-using SchoolJournal.Application.Services;
+using SchoolJournal.BusinessLogic.Common;
+using SchoolJournal.BusinessLogic.DTOs;
+using SchoolJournal.BusinessLogic.Services;
 using Xunit;
 
 namespace SchoolJournal.Tests;
