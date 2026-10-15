@@ -1,4 +1,4 @@
-﻿using SchoolJournal.DataAccess.Entities;
+using SchoolJournal.DataAccess.Entities;
 
 namespace SchoolJournal.DataAccess.Interfaces;
 
@@ -25,4 +25,10 @@ public interface IStudentRepository : IRepository<Student>
 {
     /// <summary>Запрос учащихся с загруженным классом.</summary>
     IQueryable<Student> QueryWithClass();
+}
+
+public interface ISubjectHourRepository : IRepository<SubjectHour>
+{
+    /// <summary>Нагрузка предмета по параллели (составной ключ). Возвращает отслеживаемую сущность.</summary>
+    Task<SubjectHour?> GetAsync(int subjectId, int gradeLevel, CancellationToken cancellationToken = default);
 }

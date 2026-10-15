@@ -1,4 +1,4 @@
-﻿using SchoolJournal.DataAccess.Entities;
+using SchoolJournal.DataAccess.Entities;
 
 namespace SchoolJournal.DataAccess.Interfaces;
 
@@ -8,6 +8,7 @@ public interface IUnitOfWork : IAsyncDisposable
     IJournalRepository Journals { get; }
     ILessonRepository Lessons { get; }
     IStudentRepository Students { get; }
+    ISubjectHourRepository SubjectHours { get; }
     IRepository<Class> Classes { get; }
     IRepository<Subject> Subjects { get; }
     IRepository<Teacher> Teachers { get; }

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Storage;
 using SchoolJournal.DataAccess.Data;
 using SchoolJournal.DataAccess.Entities;
 using SchoolJournal.DataAccess.Interfaces;
@@ -16,6 +16,7 @@ public class UnitOfWork : IUnitOfWork
         Journals = new JournalRepository(context);
         Lessons = new LessonRepository(context);
         Students = new StudentRepository(context);
+        SubjectHours = new SubjectHourRepository(context);
         Classes = new Repository<Class>(context);
         Subjects = new Repository<Subject>(context);
         Teachers = new Repository<Teacher>(context);
@@ -25,6 +26,7 @@ public class UnitOfWork : IUnitOfWork
     public IJournalRepository Journals { get; }
     public ILessonRepository Lessons { get; }
     public IStudentRepository Students { get; }
+    public ISubjectHourRepository SubjectHours { get; }
     public IRepository<Class> Classes { get; }
     public IRepository<Subject> Subjects { get; }
     public IRepository<Teacher> Teachers { get; }

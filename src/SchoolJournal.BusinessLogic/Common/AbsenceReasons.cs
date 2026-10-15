@@ -5,4 +5,6 @@ public static class AbsenceReasons
     public const string Illness = "Болезнь";
     public const string Valid = "Уважительная";
     public const string Unexcused = "Без уважительной причины";
+
+    public static readonly string[] All = [Illness, Valid, Unexcused];
 }

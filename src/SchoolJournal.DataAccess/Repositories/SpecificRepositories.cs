@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SchoolJournal.DataAccess.Data;
 using SchoolJournal.DataAccess.Entities;
 using SchoolJournal.DataAccess.Interfaces;
@@ -56,4 +56,15 @@ public class StudentRepository : Repository<Student>, IStudentRepository
 
     public IQueryable<Student> QueryWithClass()
         => Context.Set<Student>().AsNoTracking().Include(s => s.CurrentClass);
+}
+
+public class SubjectHourRepository : Repository<SubjectHour>, ISubjectHourRepository
+{
+    public SubjectHourRepository(SchoolJournalDbContext context) : base(context)
+    {
+    }
+
+    public async Task<SubjectHour?> GetAsync(int subjectId, int gradeLevel,
+        CancellationToken cancellationToken = default)
+        => await Context.Set<SubjectHour>().FindAsync([subjectId, gradeLevel], cancellationToken);
 }
