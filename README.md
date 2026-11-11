@@ -1,7 +1,7 @@
 # Электронный журнал успеваемости школы
 
-[![CI](https://github.com/IT-GSTU/ITP-31_borowoi_coursework/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/IT-GSTU/ITP-31_borowoi_coursework/actions/workflows/build.yml)
-[![CI (личный репозиторий)](https://github.com/borowoi/CourseWorkBD/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/borowoi/CourseWorkBD/actions/workflows/build.yml)
+[![build](https://github.com/IT-GSTU/ITP-31_borowoi_coursework/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/IT-GSTU/ITP-31_borowoi_coursework/actions/workflows/build.yml)
+[![build(личный репозиторий)](https://github.com/borowoi/CourseWorkBD/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/borowoi/CourseWorkBD/actions/workflows/build.yml)
 
 Курсовой проект по дисциплине «Разработка приложений баз данных для информационных систем»
 (специальность 6-05-0611-01 «Информационные системы и технологии», 2026–2027 учебный год).
