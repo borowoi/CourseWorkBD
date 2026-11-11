@@ -1,7 +1,7 @@
 # Электронный журнал успеваемости школы
 
-[![build](https://github.com/IT-GSTU/ITP-31_borowoi_coursework/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/IT-GSTU/ITP-31_borowoi_coursework/actions/workflows/build.yml)
-[![build(личный репозиторий)](https://github.com/borowoi/CourseWorkBD/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/borowoi/CourseWorkBD/actions/workflows/build.yml)
+[![build общий репозиторий](https://github.com/IT-GSTU/ITP-31_borowoi_coursework/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/IT-GSTU/ITP-31_borowoi_coursework/actions/workflows/build.yml)
+[![build личный репозиторий](https://github.com/borowoi/CourseWorkBD/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/borowoi/CourseWorkBD/actions/workflows/build.yml)
 
 Курсовой проект по дисциплине «Разработка приложений баз данных для информационных систем»
 Вариант № 3: «Электронный журнал успеваемости школы».
