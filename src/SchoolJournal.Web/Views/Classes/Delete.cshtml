@@ -1,0 +1,12 @@
+@model ClassEditDto
+@{
+    ViewData["Title"] = "Удаление класса";
+}
+<h2>Удаление класса</h2>
+<div class="alert alert-warning">
+    Вы действительно хотите удалить класс <strong>@($"{Model.GradeLevel}{Model.ClassLetter}")</strong> (@Model.AcademicYear)?
+</div>
+<form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+    <button type="submit" class="btn btn-danger">Удалить</button>
+    <a asp-action="Index" class="btn btn-outline-secondary">Отмена</a>
+</form>

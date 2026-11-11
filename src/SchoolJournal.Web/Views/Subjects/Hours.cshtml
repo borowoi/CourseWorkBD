@@ -1,0 +1,63 @@
+@model SubjectHoursViewModel
+@{
+    ViewData["Title"] = "Нагрузка: " + Model.SubjectName;
+}
+
+<h2>Нагрузка по часам в неделю</h2>
+<p class="text-muted">Предмет: <strong>@Model.SubjectName</strong></p>
+
+<div class="row g-4">
+    <div class="col-md-6">
+        <table class="table table-sm table-striped align-middle">
+            <thead>
+                <tr><th>Параллель</th><th class="text-end">Часов в неделю</th><th></th></tr>
+            </thead>
+            <tbody>
+                @foreach (var h in Model.Hours)
+                {
+                    <tr>
+                        <td>@h.GradeLevel</td>
+                        <td class="text-end">@h.HoursPerWeek</td>
+                        <td class="text-end">
+                            <form asp-action="RemoveHours" asp-route-id="@Model.SubjectId" method="post" class="d-inline">
+                                <input type="hidden" name="gradeLevel" value="@h.GradeLevel" />
+                                <button type="submit" class="btn btn-sm btn-outline-danger"
+                                        onclick="return confirm('Удалить запись о нагрузке?');">Удалить</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+                @if (!Model.Hours.Any())
+                {
+                    <tr><td colspan="3" class="text-center text-muted">Нагрузка ещё не указана</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">Добавить или изменить</div>
+            <div class="card-body">
+                <form asp-action="SetHours" asp-route-id="@Model.SubjectId" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Параллель</label>
+                        <select name="gradeLevel" class="form-select">
+                            @for (var g = 1; g <= 11; g++)
+                            {
+                                <option value="@g">@g</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Часов в неделю (1–10)</label>
+                        <input type="number" name="hoursPerWeek" min="1" max="10" value="2" class="form-control" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a asp-action="Index" class="btn btn-outline-secondary mt-3">К списку предметов</a>

@@ -1,8 +1,47 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@model DashboardDto
+@{
+    ViewData["Title"] = "Главная";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h2 class="mb-3">Электронный журнал успеваемости школы</h2>
+<p class="text-muted">Учёт классов, учащихся, уроков, отметок и пропусков.</p>
+
+<div class="row g-3 mb-4">
+    <div class="col-6 col-md-4 col-xl-2">
+        <div class="card stat-card text-center"><div class="card-body">
+            <div class="display-6">@Model.Classes</div><div class="text-muted">Классов</div>
+        </div></div>
+    </div>
+    <div class="col-6 col-md-4 col-xl-2">
+        <div class="card stat-card text-center"><div class="card-body">
+            <div class="display-6">@Model.Students</div><div class="text-muted">Учащихся</div>
+        </div></div>
+    </div>
+    <div class="col-6 col-md-4 col-xl-2">
+        <div class="card stat-card text-center"><div class="card-body">
+            <div class="display-6">@Model.Teachers</div><div class="text-muted">Учителей</div>
+        </div></div>
+    </div>
+    <div class="col-6 col-md-4 col-xl-2">
+        <div class="card stat-card text-center"><div class="card-body">
+            <div class="display-6">@Model.Subjects</div><div class="text-muted">Предметов</div>
+        </div></div>
+    </div>
+    <div class="col-6 col-md-4 col-xl-2">
+        <div class="card stat-card text-center"><div class="card-body">
+            <div class="display-6">@Model.Lessons.ToString("N0")</div><div class="text-muted">Уроков</div>
+        </div></div>
+    </div>
+    <div class="col-6 col-md-4 col-xl-2">
+        <div class="card stat-card text-center"><div class="card-body">
+            <div class="display-6">@Model.JournalEntries.ToString("N0")</div><div class="text-muted">Записей журнала</div>
+        </div></div>
+    </div>
+</div>
+
+<div class="d-flex flex-wrap gap-2">
+    <a asp-controller="Classes" asp-action="Index" class="btn btn-outline-primary">Классы</a>
+    <a asp-controller="Students" asp-action="Index" class="btn btn-outline-primary">Учащиеся</a>
+    <a asp-controller="Teachers" asp-action="Index" class="btn btn-outline-primary">Учителя</a>
+    <a asp-controller="Subjects" asp-action="Index" class="btn btn-outline-primary">Предметы</a>
 </div>

@@ -1,0 +1,13 @@
+@model StudentEditDto
+@{
+    ViewData["Title"] = "Удаление учащегося";
+}
+<h2>Удаление учащегося</h2>
+<div class="alert alert-warning">
+    Вы действительно хотите удалить учащегося <strong>@Model.FullName</strong>
+    (дата рождения @Model.BirthDate.ToString("dd.MM.yyyy"))?
+</div>
+<form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+    <button type="submit" class="btn btn-danger">Удалить</button>
+    <a asp-action="Index" class="btn btn-outline-secondary">Отмена</a>
+</form>

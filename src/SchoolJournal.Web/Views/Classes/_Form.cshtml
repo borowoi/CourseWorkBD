@@ -1,0 +1,32 @@
+@model ClassEditDto
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+<input type="hidden" asp-for="Id" />
+
+<div class="row g-3 mb-3">
+    <div class="col-6">
+        <label asp-for="GradeLevel" class="form-label"></label>
+        <input asp-for="GradeLevel" type="number" min="1" max="11" class="form-control" />
+        <span asp-validation-for="GradeLevel" class="text-danger"></span>
+    </div>
+    <div class="col-6">
+        <label asp-for="ClassLetter" class="form-label"></label>
+        <input asp-for="ClassLetter" maxlength="1" class="form-control" />
+        <span asp-validation-for="ClassLetter" class="text-danger"></span>
+    </div>
+</div>
+<div class="mb-3">
+    <label asp-for="AcademicYear" class="form-label"></label>
+    <input asp-for="AcademicYear" class="form-control" placeholder="2026/2027" />
+    <span asp-validation-for="AcademicYear" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="HomeroomTeacherId" class="form-label"></label>
+    <select asp-for="HomeroomTeacherId" asp-items="@((SelectList)ViewBag.Teachers)" class="form-select">
+        <option value="">— не назначен —</option>
+    </select>
+    <span asp-validation-for="HomeroomTeacherId" class="text-danger"></span>
+</div>
+
+<button type="submit" class="btn btn-primary">Сохранить</button>
+<a asp-action="Index" class="btn btn-outline-secondary">Отмена</a>

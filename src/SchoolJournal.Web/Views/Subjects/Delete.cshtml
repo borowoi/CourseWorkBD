@@ -1,0 +1,13 @@
+@model SubjectEditDto
+@{
+    ViewData["Title"] = "Удаление предмета";
+}
+<h2>Удаление предмета</h2>
+<div class="alert alert-warning">
+    Вы действительно хотите удалить предмет <strong>@Model.SubjectName</strong> (@Model.ExamType)?
+    Запись о нагрузке по параллелям будет удалена вместе с ним.
+</div>
+<form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+    <button type="submit" class="btn btn-danger">Удалить</button>
+    <a asp-action="Index" class="btn btn-outline-secondary">Отмена</a>
+</form>

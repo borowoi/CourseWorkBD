@@ -1,0 +1,37 @@
+@model StudentEditDto
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+<input type="hidden" asp-for="Id" />
+
+<div class="mb-3">
+    <label asp-for="FullName" class="form-label"></label>
+    <input asp-for="FullName" class="form-control" />
+    <span asp-validation-for="FullName" class="text-danger"></span>
+</div>
+<div class="row g-3 mb-3">
+    <div class="col-6">
+        <label asp-for="BirthDate" class="form-label"></label>
+        <input asp-for="BirthDate" type="date" class="form-control" />
+        <span asp-validation-for="BirthDate" class="text-danger"></span>
+    </div>
+    <div class="col-6">
+        <label asp-for="EnrollmentDate" class="form-label"></label>
+        <input asp-for="EnrollmentDate" type="date" class="form-control" />
+        <span asp-validation-for="EnrollmentDate" class="text-danger"></span>
+    </div>
+</div>
+<div class="mb-3">
+    <label asp-for="CurrentClassId" class="form-label"></label>
+    <select asp-for="CurrentClassId" asp-items="@((SelectList)ViewBag.Classes)" class="form-select">
+        <option value="">— выберите класс —</option>
+    </select>
+    <span asp-validation-for="CurrentClassId" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="ContactInfo" class="form-label"></label>
+    <input asp-for="ContactInfo" class="form-control" />
+    <span asp-validation-for="ContactInfo" class="text-danger"></span>
+</div>
+
+<button type="submit" class="btn btn-primary">Сохранить</button>
+<a asp-action="Index" class="btn btn-outline-secondary">Отмена</a>

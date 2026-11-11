@@ -1,0 +1,11 @@
+@model ClassEditDto
+@{
+    ViewData["Title"] = "Новый класс";
+}
+<h2>Новый класс</h2>
+<form asp-action="Create" method="post" class="col-md-6">
+    <partial name="_Form" model="Model" />
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

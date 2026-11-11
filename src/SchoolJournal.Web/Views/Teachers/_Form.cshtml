@@ -1,0 +1,23 @@
+@model TeacherEditDto
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+<input type="hidden" asp-for="Id" />
+
+<div class="mb-3">
+    <label asp-for="FullName" class="form-label"></label>
+    <input asp-for="FullName" class="form-control" />
+    <span asp-validation-for="FullName" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="QualificationCategory" class="form-label"></label>
+    <select asp-for="QualificationCategory" asp-items="@(new SelectList(QualificationCategories.All))" class="form-select"></select>
+    <span asp-validation-for="QualificationCategory" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="WorkloadHours" class="form-label"></label>
+    <input asp-for="WorkloadHours" type="number" min="0" max="60" class="form-control" />
+    <span asp-validation-for="WorkloadHours" class="text-danger"></span>
+</div>
+
+<button type="submit" class="btn btn-primary">Сохранить</button>
+<a asp-action="Index" class="btn btn-outline-secondary">Отмена</a>

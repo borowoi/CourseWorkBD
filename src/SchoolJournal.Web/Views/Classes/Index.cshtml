@@ -1,0 +1,75 @@
+@model ClassIndexViewModel
+@{
+    ViewData["Title"] = "Классы";
+    var f = Model.Filter;
+    var routes = f.ToRouteValues("PageIndex", "SortOrder");
+    Dictionary<string, string> Sort(string key, bool isDefault = false) =>
+        routes.With("SortOrder", (f.SortOrder == key || (isDefault && string.IsNullOrEmpty(f.SortOrder))) ? key + "_desc" : key);
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Классы</h2>
+    <a asp-action="Create" class="btn btn-success">Добавить класс</a>
+</div>
+
+<form asp-action="Index" method="get" class="row g-2 align-items-end mb-3">
+    <input type="hidden" name="SortOrder" value="@f.SortOrder" />
+    <div class="col-md-2">
+        <label class="form-label">Параллель</label>
+        <select name="GradeLevel" asp-items="Model.Grades" class="form-select">
+            <option value="">— все —</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <label class="form-label">Учебный год</label>
+        <select name="AcademicYear" asp-items="Model.Years" class="form-select">
+            <option value="">— все —</option>
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Классный руководитель</label>
+        <select name="HomeroomTeacherId" asp-items="Model.Teachers" class="form-select">
+            <option value="">— все —</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <button type="submit" class="btn btn-primary">Применить</button>
+        <a asp-action="Index" asp-route-reset="true" class="btn btn-outline-secondary">Сбросить</a>
+    </div>
+</form>
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+        <thead>
+            <tr>
+                <th><a asp-action="Index" asp-all-route-data="@(Sort("grade", true))">Класс</a></th>
+                <th><a asp-action="Index" asp-all-route-data="@(Sort("year"))">Учебный год</a></th>
+                <th><a asp-action="Index" asp-all-route-data="@(Sort("teacher"))">Классный руководитель</a></th>
+                <th class="text-end">Учащихся</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in Model.Result.Items)
+            {
+                <tr>
+                    <td>@c.Name</td>
+                    <td>@c.AcademicYear</td>
+                    <td>@(c.HomeroomTeacherName ?? "—")</td>
+                    <td class="text-end">@c.StudentsCount</td>
+                    <td class="text-end text-nowrap">
+                        <a asp-controller="Students" asp-action="Index" asp-route-ClassId="@c.Id" class="btn btn-sm btn-outline-secondary">Учащиеся</a>
+                        <a asp-action="Edit" asp-route-id="@c.Id" class="btn btn-sm btn-outline-primary">Изменить</a>
+                        <a asp-action="Delete" asp-route-id="@c.Id" class="btn btn-sm btn-outline-danger">Удалить</a>
+                    </td>
+                </tr>
+            }
+            @if (!Model.Result.Items.Any())
+            {
+                <tr><td colspan="5" class="text-center text-muted">Ничего не найдено</td></tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<partial name="_Pager" model="@(new PagerViewModel(Model.Result.PageIndex, Model.Result.TotalPages, Model.Result.TotalCount, f.ToRouteValues("PageIndex")))" />

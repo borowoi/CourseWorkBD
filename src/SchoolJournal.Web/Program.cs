@@ -10,6 +10,15 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDataAccessLayer(connectionString);
 builder.Services.AddBusinessLogicLayer();
 
+// Сессия хранит выбранные пользователем фильтры, сортировку и страницу списков
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromHours(2);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -22,6 +31,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthorization();
 

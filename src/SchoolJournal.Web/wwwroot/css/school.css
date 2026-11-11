@@ -1,0 +1,6 @@
+body { background-color: #f8f9fa; }
+main { padding-top: 1.25rem; padding-bottom: 2rem; }
+.validation-summary-valid { display: none; }
+th a { text-decoration: none; color: inherit; }
+th a:hover { text-decoration: underline; }
+.stat-card .display-6 { font-weight: 600; }

@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Получить исходный код
+        uses: actions/checkout@v4
+
+      - name: Установить .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Восстановить зависимости
+        run: dotnet restore SchoolJournal.slnx
+
+      - name: Собрать решение
+        run: dotnet build SchoolJournal.slnx --configuration Release --no-restore
+
+      - name: Запустить модульные тесты
+        run: >
+          dotnet test SchoolJournal.slnx
+          --configuration Release
+          --no-build
+          --logger "trx;LogFileName=test-results.trx"
+          --results-directory ./TestResults
+
+      - name: Сохранить результаты тестов
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: TestResults/*.trx

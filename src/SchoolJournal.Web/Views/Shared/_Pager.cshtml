@@ -1,0 +1,26 @@
+@model PagerViewModel
+@if (Model.TotalPages > 1)
+{
+    <nav aria-label="Постраничная навигация">
+        <ul class="pagination flex-wrap mb-1">
+            @foreach (var item in Model.Items())
+            {
+                if (item.Disabled || item.Page is null)
+                {
+                    <li class="page-item disabled"><span class="page-link">@item.Label</span></li>
+                }
+                else
+                {
+                    <li class="page-item @(item.Active ? "active" : "")">
+                        <a class="page-link" asp-action="Index" asp-all-route-data="@(Model.RouteFor(item.Page.Value))">@item.Label</a>
+                    </li>
+                }
+            }
+        </ul>
+        <p class="text-muted small">Страница @Model.PageIndex из @Model.TotalPages, всего записей: @Model.TotalCount</p>
+    </nav>
+}
+else if (Model.TotalCount > 0)
+{
+    <p class="text-muted small">Всего записей: @Model.TotalCount</p>
+}

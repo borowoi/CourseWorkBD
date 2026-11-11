@@ -1,0 +1,18 @@
+@model SubjectEditDto
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+<input type="hidden" asp-for="Id" />
+
+<div class="mb-3">
+    <label asp-for="SubjectName" class="form-label"></label>
+    <input asp-for="SubjectName" class="form-control" />
+    <span asp-validation-for="SubjectName" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="ExamType" class="form-label"></label>
+    <select asp-for="ExamType" asp-items="@(new SelectList(ExamTypes.All))" class="form-select"></select>
+    <span asp-validation-for="ExamType" class="text-danger"></span>
+</div>
+
+<button type="submit" class="btn btn-primary">Сохранить</button>
+<a asp-action="Index" class="btn btn-outline-secondary">Отмена</a>
